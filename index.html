@@ -1,0 +1,1079 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10091c">
+  <meta name="description" content="SACVEK PORTAL — проекты, сообщества и инструменты в одной вселенной.">
+  <title>SACVEK PORTAL — Enter the Unknown</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #10091c;
+      --panel: rgba(28, 17, 43, .82);
+      --panel-light: rgba(47, 26, 68, .75);
+      --purple: #bd43f4;
+      --pink: #e27bff;
+      --text: #fbf5ff;
+      --muted: #b7a8c4;
+      --border: rgba(214, 153, 255, .19);
+      --glow: rgba(189, 67, 244, .2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 50% -10%, #55216f 0%, transparent 45%),
+        radial-gradient(ellipse at 0% 60%, #29123e 0%, transparent 40%),
+        radial-gradient(ellipse at 100% 85%, #24103c 0%, transparent 35%),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      background: #bd43f4;
+      color: white;
+    }
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: .55;
+      animation: twinkle var(--duration, 4s) ease-in-out infinite alternate;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes twinkle {
+      from { opacity: .15; transform: scale(.7); }
+      to { opacity: .9; transform: scale(1.5); }
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 15px max(5%, calc((100% - 1120px) / 2));
+      background: rgba(13, 8, 22, .82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font: 24px 'Russo One', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .brand-symbol {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #d78aff66;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #50206d, #21132f);
+      box-shadow: 0 0 25px var(--glow);
+      color: var(--pink);
+      font-size: 25px;
+    }
+
+    .brand span:last-child {
+      color: var(--pink);
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #75ffac;
+      box-shadow: 0 0 12px #75ffac;
+    }
+
+    .hero {
+      position: relative;
+      max-width: 1120px;
+      margin: 35px auto 24px;
+      padding: 68px 24px 54px;
+      text-align: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at 50% 0%, #75329b42, transparent 60%),
+        linear-gradient(145deg, rgba(38, 22, 55, .85), rgba(16, 10, 26, .88));
+      box-shadow: 0 25px 90px #0004, inset 0 1px #ffffff08;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid #c55aff13;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      top: -150px;
+      left: -90px;
+      box-shadow: 0 0 0 30px #c55aff06, 0 0 0 60px #c55aff04;
+    }
+
+    .hero::after {
+      right: -100px;
+      bottom: -170px;
+      box-shadow: 0 0 0 30px #c55aff06, 0 0 0 60px #c55aff04;
+    }
+
+    .eyebrow {
+      position: relative;
+      color: var(--pink);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      position: relative;
+      margin: 22px 0 16px;
+      font: clamp(38px, 7vw, 76px)/1 'Russo One', sans-serif;
+      letter-spacing: 2px;
+      text-shadow: 0 0 45px #bd43f450;
+    }
+
+    h1 span {
+      color: var(--pink);
+    }
+
+    .hero-description {
+      position: relative;
+      max-width: 560px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 12px 19px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #241531;
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: linear-gradient(110deg, #9e32d3, #d052f4);
+      box-shadow: 0 8px 25px #a832d333;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 28px var(--glow);
+    }
+
+    .button.primary:hover {
+      background: linear-gradient(110deg, #b844ed, #e27bff);
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto 35px;
+      padding: 0 4px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 17px;
+    }
+
+    .section-kicker {
+      color: var(--pink);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 7px 0 0;
+      font: 23px 'Russo One', sans-serif;
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .search-wrap {
+      position: relative;
+      width: min(100%, 300px);
+    }
+
+    .search-wrap span {
+      position: absolute;
+      top: 50%;
+      left: 13px;
+      transform: translateY(-50%);
+      color: var(--pink);
+    }
+
+    .search {
+      width: 100%;
+      padding: 12px 14px 12px 38px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(25, 15, 37, .9);
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    .search::placeholder {
+      color: #9582a6;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      --accent: #d77aff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 200px;
+      padding: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background:
+        radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%),
+        var(--panel);
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      animation: fade-up .55s both;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+      box-shadow: 0 15px 35px #0003, 0 0 25px color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+
+    .project-card[hidden] {
+      display: none;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+    }
+
+    .project-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      flex: none;
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--accent) 12%, #1a1025);
+      font-size: 24px;
+      transition: transform .25s;
+    }
+
+    .project-card:hover .project-icon {
+      transform: rotate(-7deg) scale(1.08);
+    }
+
+    .tag {
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .project-card h3 {
+      margin: 18px 0 8px;
+      font: 17px 'Russo One', sans-serif;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .project-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 22px;
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .project-link span:last-child {
+      transition: transform .2s;
+    }
+
+    .project-link:hover span:last-child {
+      transform: translate(3px, -3px);
+    }
+
+    .empty-search {
+      display: none;
+      padding: 25px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .empty-search.visible {
+      display: block;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .tool-card {
+      min-width: 0;
+      padding: 21px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+      transition: border-color .2s, transform .2s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-3px);
+      border-color: #bd43f466;
+    }
+
+    .tool-icon {
+      font-size: 22px;
+    }
+
+    .tool-card h3 {
+      margin: 13px 0 8px;
+      font: 15px 'Russo One', sans-serif;
+    }
+
+    .tool-card p {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .clock {
+      margin: 17px 0 5px;
+      font: clamp(27px, 4vw, 36px) 'Russo One', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .clock-date {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .tool-button {
+      width: 100%;
+      margin-top: 14px;
+    }
+
+    .result-box {
+      min-height: 43px;
+      display: flex;
+      align-items: center;
+      padding: 11px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #130c1e;
+      color: var(--pink);
+      font-size: 11px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .note-input {
+      display: block;
+      width: 100%;
+      min-height: 105px;
+      resize: vertical;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #130c1e;
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .note-input::placeholder {
+      color: #9582a6;
+    }
+
+    .note-status {
+      min-height: 15px;
+      margin-top: 7px;
+      color: #8dffbd;
+      font-size: 10px;
+    }
+
+    .quote {
+      padding: 21px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(110deg, #29143caa, #151020cc);
+      text-align: center;
+    }
+
+    .quote-mark {
+      color: var(--pink);
+      font-size: 26px;
+    }
+
+    .quote-text {
+      margin: 8px 0 17px;
+      font: 16px 'Russo One', sans-serif;
+      line-height: 1.6;
+    }
+
+    .quote .button {
+      min-height: 38px;
+      padding: 9px 13px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 23px 4px 30px;
+      border-top: 1px solid var(--border);
+      color: #9582a6;
+      font-size: 10px;
+    }
+
+    .footer-brand {
+      color: var(--pink);
+      font: 14px 'Russo One', sans-serif;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 30;
+      max-width: calc(100% - 40px);
+      padding: 13px 17px;
+      border: 1px solid #d77aff55;
+      border-radius: 12px;
+      background: #21132f;
+      box-shadow: 0 10px 35px #0005;
+      color: white;
+      font-size: 12px;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .2s, transform .2s;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 1200px) {
+      .hero {
+        margin-top: 42px;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .hero, .section, footer {
+        width: calc(100% - 36px);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        padding: 12px 18px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-symbol {
+        width: 36px;
+        height: 36px;
+        font-size: 21px;
+      }
+
+      .top-right {
+        gap: 9px;
+        font-size: 10px;
+      }
+
+      .top-right .live {
+        display: none;
+      }
+
+      .hero {
+        margin-top: 20px;
+        padding: 50px 18px 38px;
+        border-radius: 21px;
+      }
+
+      .eyebrow {
+        font-size: 9px;
+        letter-spacing: 3px;
+      }
+
+      h1 {
+        letter-spacing: 0;
+      }
+
+      .hero-description {
+        font-size: 12px;
+      }
+
+      .section-heading {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .search-wrap {
+        width: 100%;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        min-height: 185px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-card {
+        padding: 19px;
+      }
+
+      .clock {
+        font-size: 34px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="stars" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SACVEK Portal — главная">
+      <span class="brand-symbol">✦</span>
+      SACVEK <span>PORTAL</span>
+    </a>
+
+    <div class="top-right">
+      <span class="live"><span class="live-dot"></span> ПОРТАЛ АКТИВЕН</span>
+      <span id="header-clock">--:--:--</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">✦ Your gateway to the unknown ✦</div>
+      <h1>ENTER THE <span>UNKNOWN</span></h1>
+
+      <p class="hero-description">
+        Ты нашёл вход. За этим порталом — проекты SACVEK,
+        сообщества и инструменты. Выбирай свой путь и открывай
+        новые возможности.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#projects">🌀 Исследовать проекты</a>
+        <a class="button" href="#tools">⚡ Открыть инструменты</a>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Your universe</div>
+          <h2>Проекты и сообщества</h2>
+        </div>
+
+        <label class="search-wrap">
+          <span>⌕</span>
+          <input
+            class="search"
+            id="project-search"
+            type="search"
+            placeholder="Найти проект..."
+            autocomplete="off"
+            aria-label="Поиск по проектам"
+          >
+        </label>
+      </div>
+
+      <div class="project-grid" id="project-grid">
+        <article class="project-card" data-search="sacvek tier list тир лист fruits blox fruits сайт">
+          <div class="project-top">
+            <div class="project-icon" style="--accent:#d77aff">📊</div>
+            <span class="tag">WEB PROJECT</span>
+          </div>
+          <h3>SACVEK TIER LIST</h3>
+          <p>Твой тир-лист Blox Fruits. Смотри оценки и изучай игровые предметы.</p>
+          <a class="project-link" href="https://sacvektierlist.site/" target="_blank" rel="noopener noreferrer">
+            <span>Открыть сайт</span><span>↗</span>
+          </a>
+        </article>
+
+        <article class="project-card" data-search="telegram телеграм канал тир листа sacvek новости">
+          <div class="project-top">
+            <div class="project-icon" style="--accent:#65c8ff">✈️</div>
+            <span class="tag">TELEGRAM</span>
+          </div>
+          <h3>Канал тир-листа</h3>
+          <p>Новости и публикации, связанные с SACVEK Tier List.</p>
+          <a class="project-link" href="https://t.me/sacvektierlist" target="_blank" rel="noopener noreferrer">
+            <span>Открыть Telegram</span><span>↗</span>
+          </a>
+        </article>
+
+        <article class="project-card" data-search="bfsell free private servers бесплатные приватные сервера roblox роблокс главный тгк">
+          <div class="project-top">
+            <div class="project-icon" style="--accent:#7dffb0">🎮</div>
+            <span class="tag">ROBLOX</span>
+          </div>
+          <h3>Бесплатные приватные серверы</h3>
+          <p>Telegram-канал с бесплатными приватными серверами Roblox. Главный канал проекта.</p>
+          <a class="project-link" href="https://t.me/bfsell_freeprivateservers" target="_blank" rel="noopener noreferrer">
+            <span>Перейти в канал</span><span>↗</span>
+          </a>
+        </article>
+
+        <article class="project-card" data-search="bf sell community сообщество rbx_bfsell roblox роблокс главный канал">
+          <div class="project-top">
+            <div class="project-icon" style="--accent:#ffbd70">🌐</div>
+            <span class="tag">COMMUNITY</span>
+          </div>
+          <h3>Сообщество BF SELL</h3>
+          <p>Сообщество BF SELL, в котором состоит твой Telegram-канал.</p>
+          <a class="project-link" href="https://t.me/rbx_bfsell" target="_blank" rel="noopener noreferrer">
+            <span>Открыть сообщество</span><span>↗</span>
+          </a>
+        </article>
+      </div>
+
+      <div class="empty-search" id="empty-search">
+        🛰️ Ничего не найдено. Попробуй другое название.
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Utility deck</div>
+          <h2>Мини-инструменты</h2>
+        </div>
+        <span class="section-note">Полезные функции прямо в портале</span>
+      </div>
+
+      <div class="tools-grid">
+        <article class="tool-card">
+          <div class="tool-icon">🕒</div>
+          <h3>Космические часы</h3>
+          <p>Текущее время и дата по настройкам часового пояса твоего устройства.</p>
+          <div class="clock" id="tool-clock">--:--:--</div>
+          <div class="clock-date" id="clock-date">Загружаем дату...</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">🎲</div>
+          <h3>Прыжок в случайный проект</h3>
+          <p>Не знаешь, куда отправиться? Пусть портал выберет один из проектов.</p>
+          <div class="result-box" id="random-result" aria-live="polite">
+            Следующая точка назначения ждёт тебя.
+          </div>
+          <button class="button primary tool-button" id="random-button" type="button">
+            🚀 Выбрать проект
+          </button>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">📝</div>
+          <h3>Личные заметки</h3>
+          <p>Записывай идеи для проектов. Заметки сохраняются локально в этом браузере.</p>
+          <textarea
+            class="note-input"
+            id="notes"
+            maxlength="5000"
+            placeholder="Новая идея для SACVEK..."
+            aria-label="Личные заметки"
+          ></textarea>
+          <div class="note-status" id="note-status" aria-live="polite">Заметки хранятся на этом устройстве.</div>
+          <button class="button tool-button" id="clear-notes" type="button">Очистить заметки</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="quote">
+        <div class="quote-mark">✦</div>
+        <div class="section-kicker">Message from the portal</div>
+        <div class="quote-text" id="quote-text">Каждый большой проект начинается с одной идеи.</div>
+        <button class="button" id="quote-button" type="button">✧ Новое послание</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <div class="footer-brand">SACVEK PORTAL</div>
+      <div style="margin-top:7px">Один портал. Несколько проектов. Твоя вселенная.</div>
+    </div>
+    <div>© <span id="year"></span> SACVEK · ENTER THE UNKNOWN</div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Космические звёзды на фоне
+    const stars = document.getElementById("stars");
+
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.setProperty("--duration", (2 + Math.random() * 5) + "s");
+      star.style.setProperty("--delay", (Math.random() * -5) + "s");
+
+      const size = Math.random() > 0.85 ? 3 : 2;
+      star.style.width = size + "px";
+      star.style.height = size + "px";
+
+      stars.appendChild(star);
+    }
+
+    // Набор проектов. Ссылки сохранены из исходного портала.
+    const projects = [
+      {
+        name: "SACVEK Tier List",
+        description: "Сайт тир-листа Blox Fruits",
+        url: "https://sacvektierlist.site/"
+      },
+      {
+        name: "Телеграм-канал тир-листа",
+        description: "Канал SACVEK Tier List",
+        url: "https://t.me/sacvektierlist"
+      },
+      {
+        name: "Бесплатные приватные серверы Roblox",
+        description: "Главный Telegram-канал проекта",
+        url: "https://t.me/bfsell_freeprivateservers"
+      },
+      {
+        name: "Сообщество BF SELL",
+        description: "Главный канал сообщества BF SELL",
+        url: "https://t.me/rbx_bfsell"
+      }
+    ];
+
+    // Часы и дата
+    const pad = value => String(value).padStart(2, "0");
+
+    function updateClock() {
+      const now = new Date();
+      const time = [
+        pad(now.getHours()),
+        pad(now.getMinutes()),
+        pad(now.getSeconds())
+      ].join(":");
+
+      document.getElementById("header-clock").textContent = time;
+      document.getElementById("tool-clock").textContent = time;
+
+      document.getElementById("clock-date").textContent =
+        new Intl.DateTimeFormat("ru-RU", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(now);
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Поиск по карточкам
+    const search = document.getElementById("project-search");
+    const cards = [...document.querySelectorAll(".project-card")];
+    const emptySearch = document.getElementById("empty-search");
+
+    search.addEventListener("input", () => {
+      const query = search.value.trim().toLocaleLowerCase("ru");
+
+      let visible = 0;
+
+      cards.forEach(card => {
+        const text = (card.innerText + " " + card.dataset.search)
+          .toLocaleLowerCase("ru");
+
+        const matches = text.includes(query);
+        card.hidden = !matches;
+
+        if (matches) visible++;
+      });
+
+      emptySearch.classList.toggle("visible", visible === 0);
+    });
+
+    // Случайный проект
+    document.getElementById("random-button").addEventListener("click", () => {
+      const project = projects[Math.floor(Math.random() * projects.length)];
+      const result = document.getElementById("random-result");
+
+      result.replaceChildren();
+
+      const name = document.createElement("strong");
+      name.textContent = project.name;
+
+      const link = document.createElement("a");
+      link.href = project.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = " ↗";
+      link.style.color = "var(--pink)";
+      link.style.marginLeft = "6px";
+      link.setAttribute("aria-label", "Открыть " + project.name);
+
+      result.append(name, link);
+    });
+
+    // Уведомление в интерфейсе
+    let toastTimer;
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("visible");
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 2400);
+    }
+
+    // Личные заметки: хранятся только в текущем браузере
+    const notes = document.getElementById("notes");
+    const noteStatus = document.getElementById("note-status");
+    const NOTES_KEY = "sacvek-portal-notes";
+
+    try {
+      notes.value = localStorage.getItem(NOTES_KEY) || "";
+    } catch {
+      noteStatus.textContent = "Локальное сохранение недоступно в этом режиме браузера.";
+    }
+
+    let saveTimer;
+
+    notes.addEventListener("input", () => {
+      noteStatus.textContent = "Сохранение...";
+
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        try {
+          localStorage.setItem(NOTES_KEY, notes.value);
+          noteStatus.textContent = "✓ Заметки сохранены в этом браузере.";
+        } catch {
+          noteStatus.textContent = "Не удалось сохранить. Скопируй заметки вручную.";
+        }
+      }, 250);
+    });
+
+    document.getElementById("clear-notes").addEventListener("click", () => {
+      if (!notes.value) {
+        showToast("Заметки уже пусты.");
+        return;
+      }
+
+      if (!confirm("Точно очистить все личные заметки?")) return;
+
+      notes.value = "";
+
+      try {
+        localStorage.removeItem(NOTES_KEY);
+        noteStatus.textContent = "Заметки очищены.";
+      } catch {
+        noteStatus.textContent = "Текст удалён из поля.";
+      }
+
+      showToast("Заметки очищены.");
+    });
+
+    // Случайные фразы
+    const quotes = [
+      "Каждый большой проект начинается с одной идеи.",
+      "Исследуй. Создавай. Развивай SACVEK.",
+      "Даже маленький шаг открывает новый маршрут.",
+      "Твоя следующая идея может изменить всю вселенную.",
+      "Не стой у портала — открывай новые возможности.",
+      "Создавай своё, а остальное оставь за пределами галактики.",
+      "Новая цель. Новый уровень. Новая глава SACVEK."
+    ];
+
+    let previousQuote = -1;
+
+    document.getElementById("quote-button").addEventListener("click", () => {
+      let index;
+
+      do {
+        index = Math.floor(Math.random() * quotes.length);
+      } while (quotes.length > 1 && index === previousQuote);
+
+      previousQuote = index;
+      document.getElementById("quote-text").textContent = quotes[index];
+    });
+  </script>
+</body>
+</html>
