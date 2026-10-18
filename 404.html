@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0a10">
+  <meta name="robots" content="noindex">
+  <title>404 — SACVEK PORTAL</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b0a10;--text:#f5f2ff;--muted:#aaa3bd;--accent:#b59aff;--border:rgba(181,154,255,.2)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;overflow:hidden;padding:24px;background:radial-gradient(ellipse at 18% 20%,rgba(117,77,190,.17),transparent 40%),radial-gradient(ellipse at 82% 78%,rgba(91,55,150,.15),transparent 38%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.2;background-image:radial-gradient(rgba(220,208,255,.35) .7px,transparent .7px);background-size:24px 24px;mask-image:linear-gradient(to bottom,black,transparent 88%)}
+    .wrap{width:min(100%,680px);text-align:center;position:relative;animation:appear .65s ease both}.brand{display:inline-flex;align-items:center;gap:9px;margin-bottom:30px;color:#ded3ff;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.brand-mark{display:grid;place-items:center;width:29px;height:29px;border:1px solid var(--border);border-radius:10px;background:rgba(181,154,255,.1);color:var(--accent);letter-spacing:0}
+    .code{margin:0;font-size:clamp(100px,23vw,190px);line-height:.88;font-weight:900;letter-spacing:-.09em;color:transparent;background:linear-gradient(135deg,#fff 5%,#d5c4ff 42%,#8e6bff 95%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 12px 45px rgba(140,107,255,.15))}h1{margin:28px 0 12px;font-size:clamp(23px,5vw,34px);letter-spacing:-.035em}.description{max-width:440px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.75}
+    .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding:0 20px;border-radius:14px;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:14px;font-weight:750;transition:transform .2s ease,background .2s ease,border-color .2s ease}.button:hover{transform:translateY(-2px);border-color:rgba(181,154,255,.55)}.button-primary{color:#151020;background:linear-gradient(135deg,#d4c4ff,#a88aff);border-color:transparent;box-shadow:0 8px 28px rgba(140,107,255,.18)}.button-primary:hover{background:linear-gradient(135deg,#e2d8ff,#b99fff)}.button-secondary{background:rgba(255,255,255,.035)}.footer{margin-top:48px;color:#716a83;font-size:11px;letter-spacing:.12em}
+    @keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand"><span class="brand-mark">S</span> SACVEK PORTAL</div>
+    <p class="code" aria-label="Ошибка 404">404</p>
+    <h1>Кажется, мы не нашли эту страницу</h1>
+    <p class="description">Возможно, ссылка устарела или адрес был введён с ошибкой. Но ничего страшного — можно вернуться на портал и продолжить отсюда.</p>
+    <div class="actions">
+      <a class="button button-primary" href="./">← Вернуться на портал</a>
+      <a class="button button-secondary" href="javascript:history.back()">Назад</a>
+    </div>
+    <p class="footer">SACVEK · НЕ ТА СТРАНИЦА, НО ТОТ САМЫЙ ПОРТАЛ</p>
+  </main>
+</body>
+</html>
