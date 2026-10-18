@@ -528,6 +528,95 @@
       font-size: 10px;
     }
 
+
+    .changelog {
+      position: relative;
+      display: grid;
+      gap: 13px;
+      padding: 8px 0 8px 22px;
+    }
+
+    .changelog::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 6px;
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(var(--purple), #65c8ff55, transparent);
+    }
+
+    .changelog-item {
+      position: relative;
+      padding: 17px 18px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: linear-gradient(110deg, rgba(42, 23, 59, .82), rgba(20, 13, 30, .88));
+      transition: transform .2s, border-color .2s;
+      animation: changelog-in .45s ease both;
+    }
+
+    .changelog-item:hover {
+      transform: translateX(4px);
+      border-color: #bd43f477;
+    }
+
+    .changelog-item::before {
+      content: "";
+      position: absolute;
+      top: 23px;
+      left: -22px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--bg);
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 13px #bd43f4aa;
+    }
+
+    .changelog-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 9px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .changelog-tag {
+      padding: 4px 8px;
+      border: 1px solid #bd43f455;
+      border-radius: 20px;
+      background: #bd43f41a;
+      color: var(--pink);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .changelog-item h3 {
+      margin: 0 0 7px;
+      font: 15px 'Russo One', sans-serif;
+    }
+
+    .changelog-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @keyframes changelog-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .changelog-item { animation: none; }
+    }
+
     .quote {
       padding: 21px;
       border: 1px solid var(--border);
@@ -729,6 +818,7 @@
       <div class="hero-actions">
         <a class="button primary" href="#projects">🌀 Исследовать проекты</a>
         <a class="button" href="#tools">⚡ Открыть инструменты</a>
+        <a class="button" href="#updates">📰 Журнал обновлений</a>
       </div>
     </section>
 
@@ -874,6 +964,45 @@
           ></textarea>
           <div class="note-status" id="note-status" aria-live="polite">Заметки хранятся на этом устройстве.</div>
           <button class="button tool-button" id="clear-notes" type="button">Очистить заметки</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="updates">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Portal log · What's new</div>
+          <h2>Журнал обновлений</h2>
+        </div>
+        <div class="section-note">История развития SACVEK</div>
+      </div>
+
+      <div class="changelog" aria-label="История обновлений портала">
+        <article class="changelog-item">
+          <div class="changelog-meta">
+            <span class="changelog-tag">ПОРТАЛ</span>
+            <span>Стартовая версия</span>
+          </div>
+          <h3>Добро пожаловать в SACVEK PORTAL</h3>
+          <p>Все основные проекты и сообщества SACVEK собраны в одном месте — теперь нужные ссылки проще найти.</p>
+        </article>
+
+        <article class="changelog-item">
+          <div class="changelog-meta">
+            <span class="changelog-tag">ФУНКЦИИ</span>
+            <span>Инструменты портала</span>
+          </div>
+          <h3>Полезные инструменты на одной странице</h3>
+          <p>Добавлены случайный выбор проекта, личные заметки и послания портала — можно не только переходить по ссылкам, но и взаимодействовать с сайтом.</p>
+        </article>
+
+        <article class="changelog-item">
+          <div class="changelog-meta">
+            <span class="changelog-tag">ФУНКЦИИ</span>
+            <span>Инструменты портала</span>
+          </div>
+          <h3>Журнал обновлений</h3>
+          <p>Это то, на что ты сейчас смотришь, а именно журнал обновлений, тут будут появлятся все обновления и изменения из моих проектов💜 </p>
         </article>
       </div>
     </section>
