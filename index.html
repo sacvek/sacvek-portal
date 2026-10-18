@@ -1347,11 +1347,7 @@
     renderPersonalLists(); updateFavoriteButtons();
 
     // Фирменная страница 404 работает на хостинге, который направляет неизвестные URL на этот HTML.
-    if (location.protocol !== 'file:' &&
-    !location.pathname.endsWith('.html') &&
-    !location.pathname.endsWith('/sacvek-portal/')) {
-  document.getElementById('not-found-screen').classList.add('visible');
-    }
+    
     // Заставка не задерживает посетителя дольше 1,1 секунды; уважает настройку уменьшения движения.
     window.addEventListener('load', () => setTimeout(() => document.getElementById('portal-preloader').classList.add('done'), 1050));
 
